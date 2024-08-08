@@ -2,3 +2,5 @@ com/mycompany/grupo_07/App.class
 module-info.class
 com/mycompany/grupo_07/SecondaryController.class
 com/mycompany/grupo_07/PrimaryController.class
+com/mycompany/grupo_07/ArbolBinario.class
+com/mycompany/grupo_07/ArbolBinario$Nodo.class

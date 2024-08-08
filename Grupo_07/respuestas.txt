@@ -1,0 +1,8 @@
+Oso,sí,sí,sí,no,no,no,sí,no,no,no,no,sí,no,no,sí,no,no,no,sí,sí
+Lechuza,no,sí,no,no,no,sí,no,sí,no,no,no,no,no,no,no,sí,no,no,no,sí
+Venado,sí,no,sí,sí,no,no,no,no,no,no,no,sí,no,sí,sí,no,no,no,no
+Tiburón,no,sí,no,sí,sí,no,no,no,sí,no,no,no,no,no,no,no,no,no,sí,sí
+Águila,no,sí,no,no,no,sí,no,no,no,no,no,no,no,no,no,no,no,no,no,sí
+Tortuga,no,no,no,no,sí,no,no,no,no,sí,no,no,no,no,no,no,no,no,no,no
+Cocodrilo,no,sí,sí,sí,no,no,no,no,sí,no,no,no,no,no,no,no,no,no,no,no
+León,sí,sí,sí,no,no,no,no,no,no,no,no,no,sí,no,sí,sí,no,no,sí,sí

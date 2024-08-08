@@ -1,0 +1,20 @@
+¿Es este animal un mamífero?
+¿Es este animal un carnívoro?
+¿Se para este animal sobre cuatro patas?
+¿Es este animal más grande que un perro?
+¿Vive este animal en el agua?
+¿Puede este animal volar?
+¿Tiene este animal una cola larga?
+¿Es este animal nocturno?
+¿Este animal tiene escamas?
+¿Este animal tiene un caparazón?
+¿Es este animal venenoso?
+¿Es este animal doméstico?
+¿Este animal vive en la selva?
+¿Este animal es un insecto?
+¿Este animal es herbívoro?
+¿Este animal vive en manada?
+¿Este animal puede cambiar de color?
+¿Este animal vive en cuevas?
+¿Este animal es originario de África?
+¿Este animal es un depredador?
