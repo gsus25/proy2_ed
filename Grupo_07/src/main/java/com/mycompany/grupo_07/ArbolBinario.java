@@ -3,18 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.grupo_07;
+import java.util.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-/**
- *
- * @author davidsuarez
- */
+
 public class ArbolBinario<E> {
     Nodo raiz;
-    
+
     private class Nodo {
         E contenido;
         ArbolBinario<E> izq, der;
@@ -58,41 +52,109 @@ public class ArbolBinario<E> {
         return true;
     }
 
+    public ArrayList<E> recorridoPreOrden() {
+        if (isEmpty()) return null;
+        ArrayList<E> recorrido = new ArrayList<E>();
+        
+        if (esHoja()) {
+            recorrido.add(raiz.contenido);
+        } else {
+            if (raiz.izq != null) recorrido.addAll(raiz.izq.recorridoPreOrden());
+            if (raiz.der != null) recorrido.addAll(raiz.der.recorridoPreOrden());
+        }
+        return recorrido;
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         // Cargar las preguntas y respuestas
-        ArrayList<String> preguntas = new ArrayList<>();
-        preguntas.add("¿Es este animal un mamífero?");
-        preguntas.add("¿Es este animal un carnívoro?");
-        preguntas.add("¿Se para este animal sobre cuatro patas?");
-
-        Map<String, String[]> respuestas = new HashMap<>();
-        respuestas.put("Oso", new String[]{"sí", "sí", "sí"});
-        respuestas.put("Lechuza", new String[]{"no", "sí", "no"});
-        respuestas.put("Venado", new String[]{"sí", "no", "sí"});
-        respuestas.put("Paloma", new String[]{"no", "no", "no"});
+        ArrayList<String> preguntas = cargarPreguntas("preguntas.txt");
+        Map<String, String[]> respuestas = cargarRespuestas("respuestas.txt");
 
         // Construir el árbol de decisiones
         ArbolBinario<String> arbol = construirArbol(preguntas, respuestas);
 
+        // Obtener el número máximo de preguntas
+        System.out.print("Ingresa el número máximo de preguntas (N): ");
+        int maxPreguntas = scanner.nextInt();
+        scanner.nextLine(); // Consumir la nueva línea
+
         // Jugar
         ArbolBinario<String> nodoActual = arbol;
-        while (!nodoActual.esHoja()) {
+        int numPreguntas = 0;
+        while (numPreguntas < maxPreguntas) {
+            if (nodoActual == null || nodoActual.raiz == null) {
+                System.out.println("No pude adivinar tu animal.");
+                return;
+            }
+
+            if (nodoActual.esHoja()) {
+                break;
+            }
+
             System.out.println(nodoActual.raiz.contenido);
             String respuesta = scanner.nextLine().trim().toLowerCase();
 
-            if (respuesta.equals("sí")) {
+            if (respuesta.equals("si")) {
                 nodoActual = nodoActual.raiz.izq;
             } else if (respuesta.equals("no")) {
                 nodoActual = nodoActual.raiz.der;
             } else {
-                System.out.println("Respuesta no válida. Responde con 'sí' o 'no'.");
+                System.out.println("Respuesta no válida. Responde con 'si' o 'no'.");
+                continue;
             }
+
+            numPreguntas++;
         }
 
         // Resultado
-        System.out.println("El animal que pensaste es un " + nodoActual.raiz.contenido + "?");
+        if (nodoActual != null && nodoActual.esHoja()) {
+            System.out.println("El animal que pensaste es un " + nodoActual.raiz.contenido + "?");
+        } else if (nodoActual != null) {
+            ArrayList<String> posiblesAnimales = nodoActual.recorridoPreOrden();
+            if (posiblesAnimales.isEmpty()) {
+                System.out.println("No pude adivinar tu animal.");
+            } else if (posiblesAnimales.size() == 1) {
+                System.out.println("No pude adivinar tu animal, pero podría ser un " + posiblesAnimales.get(0) + ".");
+            } else {
+                System.out.println("No pude adivinar tu animal. Los posibles animales que podrían coincidir son: " + posiblesAnimales);
+            }
+        } else {
+            System.out.println("No pude adivinar tu animal.");
+        }
+    }
+
+    public static Map<String, String[]> cargarRespuestas(String archivo) {
+        Map<String, String[]> respuestas = new HashMap<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(",", 2);
+                String nombre = partes[0];
+                String[] respuestasArray = partes[1].split(",");
+                respuestas.put(nombre, respuestasArray);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return respuestas;
+    }
+
+    public static ArrayList<String> cargarPreguntas(String archivo) {
+        ArrayList<String> preguntas = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                preguntas.add(linea);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return preguntas;
     }
 
     public static ArbolBinario<String> construirArbol(ArrayList<String> preguntas, Map<String, String[]> respuestas) {
@@ -130,3 +192,5 @@ public class ArbolBinario<E> {
         return arbol;
     }
 }
+
+

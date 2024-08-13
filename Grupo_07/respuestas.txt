@@ -6,3 +6,13 @@ Tiburón,no,sí,no,sí,sí,no,no,no,sí,no,no,no,no,no,no,no,no,no,sí,sí
 Tortuga,no,no,no,no,sí,no,no,no,no,sí,no,no,no,no,no,no,no,no,no,no
 Cocodrilo,no,sí,sí,sí,no,no,no,no,sí,no,no,no,no,no,no,no,no,no,no,no
 León,sí,sí,sí,no,no,no,no,no,no,no,no,no,sí,no,sí,sí,no,no,sí,sí
+Gato,sí,sí,sí,no,no,no,sí,no,no,no,no,sí,no,no,no,sí,no,no,no,sí
+Elefante,sí,no,sí,sí,no,no,sí,no,no,no,no,no,no,no,sí,no,no,no,no
+Delfín,no,no,no,sí,sí,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no
+Pinguino,no,no,no,no,sí,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no
+Rana,no,no,no,no,sí,no,no,no,no,no,sí,no,no,no,no,no,no,no,no,no
+Serpiente,no,no,no,no,no,no,no,sí,sí,no,no,no,no,no,no,no,no,no,no,sí
+Jirafa,sí,no,sí,sí,no,no,sí,no,no,no,no,no,no,no,no,no,no,sí,no,no
+Orangután,sí,no,sí,no,no,no,sí,no,no,no,no,no,sí,no,no,sí,no,no,no,no
+Halcón,no,sí,no,no,no,sí,no,no,no,no,no,no,no,no,no,no,no,no,sí,sí
+Canguro,sí,no,sí,sí,no,no,no,no,no,no,no,no,no,no,no,no,no,no,sí,no
