@@ -83,9 +83,10 @@ public class ArbolBinario<E> {
         // Jugar
         ArbolBinario<String> nodoActual = arbol;
         int numPreguntas = 0;
+        ArrayList<String> contesta =new ArrayList<>();
         while (numPreguntas < maxPreguntas) {
             if (nodoActual == null || nodoActual.raiz == null) {
-                System.out.println("No pude adivinar tu animal.");
+                System.out.println("No es posible encontrar un animal con estas características.");
                 return;
             }
 
@@ -95,6 +96,7 @@ public class ArbolBinario<E> {
 
             System.out.println(nodoActual.raiz.contenido);
             String respuesta = scanner.nextLine().trim().toLowerCase();
+            contesta.add(respuesta);
 
             if (respuesta.equals("si")) {
                 nodoActual = nodoActual.raiz.izq;
@@ -114,14 +116,14 @@ public class ArbolBinario<E> {
         } else if (nodoActual != null) {
             ArrayList<String> posiblesAnimales = nodoActual.recorridoPreOrden();
             if (posiblesAnimales.isEmpty()) {
-                System.out.println("No pude adivinar tu animal.");
+                System.out.println("No es posible encontrar un animal con estas características.");
             } else if (posiblesAnimales.size() == 1) {
                 System.out.println("No pude adivinar tu animal, pero podría ser un " + posiblesAnimales.get(0) + ".");
             } else {
                 System.out.println("No pude adivinar tu animal. Los posibles animales que podrían coincidir son: " + posiblesAnimales);
             }
         } else {
-            System.out.println("No pude adivinar tu animal.");
+            System.out.println("No es posible encontrar un animal con estas características.");
         }
     }
 
