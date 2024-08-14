@@ -96,3 +96,4 @@ Tiburón Martillo,no,sí,no,sí,sí,no,no,no,sí,no,no,no,no,no,no,no,no,no,sí,
 Urraca,no,no,no,no,sí,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no
 Vaca,sí,no,sí,sí,no,no,sí,no,no,no,no,no,no,no,no,sí,no,no,no,no
 Vicuña,sí,no,sí,sí,no,no,sí,no,no,no,no,no,no,no,no,sí,no,no,no,no
+Dario,sí,sí,sí,sí,sí,no,no,no,no,no,no,no,no,no,no,no,no,no,no,no

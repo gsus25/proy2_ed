@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.grupo_07;
+import static com.mycompany.grupo_07.Readable.*;
 import java.util.*;
 import java.io.*;
 
@@ -66,6 +67,7 @@ public class ArbolBinario<E> {
     }
 
     public static void main(String[] args) {
+        
         Scanner scanner = new Scanner(System.in);
 
         // Cargar las preguntas y respuestas
@@ -74,7 +76,7 @@ public class ArbolBinario<E> {
 
         // Construir el árbol de decisiones
         ArbolBinario<String> arbol = construirArbol(preguntas, respuestas);
-
+        ArrayList<String> animales = arbol.recorridoPreOrden();
         // Obtener el número máximo de preguntas
         System.out.print("Ingresa el número máximo de preguntas (N): ");
         int maxPreguntas = scanner.nextInt();
@@ -84,29 +86,40 @@ public class ArbolBinario<E> {
         ArbolBinario<String> nodoActual = arbol;
         int numPreguntas = 0;
         ArrayList<String> contesta =new ArrayList<>();
-        while (numPreguntas < maxPreguntas) {
+        OUTER:
+        while (numPreguntas <= maxPreguntas) {
             if (nodoActual == null || nodoActual.raiz == null) {
                 System.out.println("No es posible encontrar un animal con estas características.");
-                return;
+                System.out.println("Quieres añadir tu animal al juego? (sí/no)");
+                String respuesta2 = scanner.nextLine().trim().toLowerCase();
+                switch (respuesta2) {
+                    case "si":
+                    case "sí":
+                        System.out.println("oki");
+                        aprender(animales,contesta);
+                        break;
+                    case "no":
+                        break OUTER;
+                    default:
+                        System.out.println("Respuesta no válida. Responde con 'sí' o 'no'.");
+                        continue;
+                }                       
+                    return;
             }
-
             if (nodoActual.esHoja()) {
                 break;
             }
-
             System.out.println(nodoActual.raiz.contenido);
             String respuesta = scanner.nextLine().trim().toLowerCase();
             contesta.add(respuesta);
-
-            if (respuesta.equals("si")) {
+            if (respuesta.equals("si")||respuesta.equals("sí")) {
                 nodoActual = nodoActual.raiz.izq;
             } else if (respuesta.equals("no")) {
                 nodoActual = nodoActual.raiz.der;
             } else {
-                System.out.println("Respuesta no válida. Responde con 'si' o 'no'.");
+                System.out.println("Respuesta no válida. Responde con 'sí' o 'no'.");
                 continue;
             }
-
             numPreguntas++;
         }
 
@@ -116,14 +129,14 @@ public class ArbolBinario<E> {
         } else if (nodoActual != null) {
             ArrayList<String> posiblesAnimales = nodoActual.recorridoPreOrden();
             if (posiblesAnimales.isEmpty()) {
-                System.out.println("No es posible encontrar un animal con estas características.");
+                System.out.println("No es posible encontrar un animal con estas característicassssss.");
             } else if (posiblesAnimales.size() == 1) {
                 System.out.println("No pude adivinar tu animal, pero podría ser un " + posiblesAnimales.get(0) + ".");
             } else {
                 System.out.println("No pude adivinar tu animal. Los posibles animales que podrían coincidir son: " + posiblesAnimales);
             }
         } else {
-            System.out.println("No es posible encontrar un animal con estas características.");
+            System.out.println("Gracias por jugar <3");
         }
     }
 
@@ -158,6 +171,39 @@ public class ArbolBinario<E> {
 
         return preguntas;
     }
+    public static void aprender(ArrayList<String> animales, ArrayList<String> respuestas){
+        
+        int n= respuestas.size();
+        respuestas.addAll(preguntar(n));
+        
+        //cambiar respuestas de "si" por "sí"
+        for (int i = 0; i < respuestas.size(); i++) {
+            if ("si".equals(respuestas.get(i))) {
+                respuestas.set(i, "sí");
+            }
+        }
+        
+        Scanner scanner = new Scanner(System.in);
+        if (respuestas.size()==20){
+            System.out.println("Como se llama el animal que quieres agregar:");
+            String animalito = scanner.nextLine();
+            if (!animales.contains(animalito)){
+                StringBuilder animal = new StringBuilder(animalito);
+
+                for (String elemento : respuestas) {
+                    animal.append(",").append(elemento);
+                }
+
+                String animalRespuestas = animal.toString();
+
+                escribirAnimal(animalRespuestas,"respuestas.txt");
+            }
+            else{
+                System.out.println("Este animal si se encuentra en el juego");
+            }
+        }
+    }
+    
 
     public static ArbolBinario<String> construirArbol(ArrayList<String> preguntas, Map<String, String[]> respuestas) {
         if (preguntas.isEmpty() || respuestas.isEmpty()) return null;
