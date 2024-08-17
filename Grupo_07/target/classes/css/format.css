@@ -1,0 +1,36 @@
+.root {
+    -fx-background-image: url('../images/Fondo.png');
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-border-color: #373c59; /* Color del borde */
+    -fx-border-width: 2px; /* Grosor del borde */
+}
+.button {
+    -fx-background-color: #474F7A;  /* Color de fondo */
+    -fx-text-fill: #F0F4EF;          /* Color del texto */
+    -fx-font-size: 14px;             /* Tamaño del texto */
+    -fx-font-weight: bold;           /* Grosor del texto */
+    -fx-border-radius: 4px;          /* Bordes redondeados */
+    -fx-background-radius: 14px;      /* Radio del fondo */
+}
+.button:hover {
+    -fx-background-color: #5d658f; /* Color de fondo al pasar el mouse */
+}
+.button:pressed {
+    -fx-background-color: #454f87; /* Color de fondo al presionar */
+    -fx-border-color: #003366; /* Color del borde al presionar */
+    -fx-border-radius: 4px;          /* Bordes redondeados */
+}
+
+@font-face {
+    font-family: 'MilkyVintage';
+    src: url('../fonts/MilkyVintage-Regular.ttf') format('truetype');
+}
+.label {
+    -fx-text-fill: #ffffff;         /* Color del texto */
+    -fx-font-size: 24px;            /* Tamaño del texto */
+    -fx-font-weight: bold;          /* Grosor del texto */
+    -fx-font-family: 'MilkyVintage';       /* Familia de la fuente */
+}

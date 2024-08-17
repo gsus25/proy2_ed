@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.scene.image.Image;
 
 /**
  * JavaFX App
@@ -17,7 +18,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("menuprincipal"), 640, 480);
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/adivino.png")));
+        stage.setTitle("Juegazo");
         stage.setScene(scene);
         stage.show();
     }
