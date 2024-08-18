@@ -14,11 +14,7 @@ import javafx.scene.control.ButtonType;
  *
  * @author Usuario
  */
-public class JuegoController {
-    @FXML
-    private void switchToPrincipal() throws IOException {
-        App.setRoot("menuprincipal");
-    }
+public class FinalJuegoController {
     @FXML
     private void switchToMenu() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -31,8 +27,15 @@ public class JuegoController {
         }
     }
     @FXML
-    private void switchToResult() throws IOException {
-        App.setRoot("finaljuego");
+    private void exit() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación de Salida");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Estás seguro de que deseas salir?");
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+        if (result == ButtonType.OK) {
+            Platform.exit();
+            System.exit(0);
+        }
     }
-    
 }

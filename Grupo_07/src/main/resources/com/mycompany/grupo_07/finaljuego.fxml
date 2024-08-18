@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../css/format.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_07.FinalJuegoController">
+   <right>
+      <VBox alignment="TOP_CENTER" prefHeight="341.0" prefWidth="257.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Tu animal es:" />
+            <Label text="Borja" />
+         </children>
+      </VBox>
+   </right>
+   <left>
+      <ImageView fitHeight="325.0" fitWidth="301.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../../../images/Pmuyfeliz.png" />
+         </image>
+      </ImageView>
+   </left>
+   <bottom>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="55.0" prefWidth="596.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" text="Jugar de Nuevo">
+               <HBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" />
+               </HBox.margin>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToMenu" text="Menu">
+               <HBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" />
+               </HBox.margin>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#exit" text="Salir">
+               <HBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <Label text="Juegazo" BorderPane.alignment="CENTER" />
+   </top>
+</BorderPane>

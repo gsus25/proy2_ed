@@ -24,7 +24,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <Button mnemonicParsing="false" style="-fx-background-color: green;" text="Si">
+            <Button mnemonicParsing="false" onAction="#switchToResult" style="-fx-background-color: green;" text="Si">
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>

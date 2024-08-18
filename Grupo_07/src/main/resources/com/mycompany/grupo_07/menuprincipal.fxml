@@ -12,7 +12,7 @@
    <bottom>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#switchToSecondary" text="Jugar">
+            <Button mnemonicParsing="false" onAction="#mostrarDialogoCantidadPreguntas" text="Jugar">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
