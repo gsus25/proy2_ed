@@ -34,3 +34,15 @@
     -fx-font-weight: bold;          /* Grosor del texto */
     -fx-font-family: 'MilkyVintage';       /* Familia de la fuente */
 }
+.vbox {
+    -fx-background-color: transparent; /* Fondo transparente */
+}
+
+.scroll-pane {
+    -fx-background-color: transparent; /* Fondo transparente */
+    -fx-padding: 10px; /* Opcional: ajusta el padding para un mejor margen */
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent; /* Fondo transparente dentro del ScrollPane */
+}

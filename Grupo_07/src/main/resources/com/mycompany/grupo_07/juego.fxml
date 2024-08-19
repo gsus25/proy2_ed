@@ -7,24 +7,35 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../css/format.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_07.JuegoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../css/format.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.grupo_07.JuegoController">
    <left>
-      <ImageView fitHeight="398.0" fitWidth="396.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fx:id="imgView" fitHeight="396.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
             <Image url="@../../../images/Pdefault.png" />
          </image>
       </ImageView>
    </left>
-   <right>
-      <VBox alignment="CENTER" prefHeight="396.0" prefWidth="242.0" BorderPane.alignment="CENTER">
+   <top>
+      <Button mnemonicParsing="false" onAction="#switchToMenu" text="Salir" BorderPane.alignment="CENTER_RIGHT">
+         <BorderPane.margin>
+            <Insets right="5.0" top="5.0" />
+         </BorderPane.margin>
+      </Button>
+   </top>
+   <center>
+      <VBox alignment="CENTER" prefHeight="396.0" prefWidth="238.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="¿Pregunta?">
+            <Label fx:id="preguntaLabel" alignment="CENTER" prefHeight="94.0" prefWidth="195.0" text="¿Pregunta?">
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
+               <font>
+                  <Font size="10.0" />
+               </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#switchToResult" style="-fx-background-color: green;" text="Si">
+            <Button fx:id="botonSi" mnemonicParsing="false" onAction="#switchPregunta" style="-fx-background-color: green;" text="Sí">
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
@@ -32,7 +43,7 @@
                   <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" onAction="#switchToPrincipal" style="-fx-background-color: red;" text="No">
+            <Button fx:id="botonNo" mnemonicParsing="false" onAction="#switchPregunta" style="-fx-background-color: red;" text="No">
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
@@ -42,12 +53,5 @@
             </Button>
          </children>
       </VBox>
-   </right>
-   <top>
-      <Button mnemonicParsing="false" onAction="#switchToMenu" text="Salir" BorderPane.alignment="CENTER_RIGHT">
-         <BorderPane.margin>
-            <Insets right="5.0" top="5.0" />
-         </BorderPane.margin>
-      </Button>
-   </top>
+   </center>
 </BorderPane>
