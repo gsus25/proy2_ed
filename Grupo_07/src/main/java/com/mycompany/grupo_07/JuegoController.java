@@ -10,6 +10,7 @@ import static com.mycompany.grupo_07.Aquinator.construirArbol;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -151,20 +152,26 @@ public class JuegoController {
         imgView.setImage(image);
     }
     
-    private void aprender(ActionEvent e) throws IOException{
+    private void aprender(ActionEvent e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Animal no encontrado");
         alert.setHeaderText("No es posible encontrar un animal con estas características");
         alert.setContentText("¿Quieres añadir tu animal al juego?");
-        if (alert.showAndWait().get()==ButtonType.OK) {
+
+        // Verifica la respuesta del usuario
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             cambiarPantallaAprender(e);
+        } else {
+            // Si el usuario selecciona "Cancel", retornamos sin hacer nada más.            
+            cambiarPantallaMenu(e);
+            return;
         }
-        else cambiarPantallaMenu(e);
-        return;
     }
+
     
     @FXML
-    private void switchPregunta(ActionEvent e) throws IOException {
+    private void switchPregunta(ActionEvent e) throws IOException {        
         
         if (nodoActual == null || nodoActual.raiz == null) {
             if(contesta.size()==contadorNose){
@@ -200,16 +207,7 @@ public class JuegoController {
             
             numPreguntas++;
             System.out.println(contesta);
- 
-            if (nodoActual == null || nodoActual.raiz == null) {
-                if(contesta.size()==contadorNose){
-                    resultado(e);
-                    return;
-                }
-                aprender(e);
-                return;
-            }
-            
+          
         }
         else{
             resultado(e);
