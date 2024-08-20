@@ -1,10 +1,10 @@
 com\mycompany\grupo_07\JuegoController.class
 com\mycompany\grupo_07\App.class
-com\mycompany\grupo_07\Aquinator.class
 com\mycompany\grupo_07\ArbolBinario$Nodo.class
-com\mycompany\grupo_07\MenuPrincipalController.class
 module-info.class
 com\mycompany\grupo_07\FinalJuegoController.class
-com\mycompany\grupo_07\AprenderController.class
 com\mycompany\grupo_07\ArbolBinario.class
+com\mycompany\grupo_07\Aquinator.class
+com\mycompany\grupo_07\MenuPrincipalController.class
+com\mycompany\grupo_07\AprenderController.class
 com\mycompany\grupo_07\Readable.class
