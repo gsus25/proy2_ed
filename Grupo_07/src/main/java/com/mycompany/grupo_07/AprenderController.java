@@ -52,7 +52,7 @@ public class AprenderController {
         // Configurar el Label para que se ajuste automáticamente al contenido
         preguntaLabel.setWrapText(true);  // Si quieres que el texto se ajuste en múltiples líneas
         preguntaLabel.setMaxWidth(Double.MAX_VALUE);  // Para que ocupe el máximo ancho posible
-        preguntaLabel.setText(preguntas.get(numRespuestas));
+        preguntaLabel.setText(numRespuestas+1+". "+preguntas.get(numRespuestas));
         preguntaLabel.setAlignment(Pos.CENTER);
     }
     
@@ -89,7 +89,7 @@ public class AprenderController {
             respuestas.add(respuesta.toLowerCase());
 
             if(numRespuestas!=maxRespuestas && numRespuestas+1!=preguntas.size()){ 
-                preguntaLabel.setText(preguntas.get(++numRespuestas));
+                preguntaLabel.setText(numRespuestas+2+". "+preguntas.get(++numRespuestas));
             }
             
             System.out.println(respuestas);

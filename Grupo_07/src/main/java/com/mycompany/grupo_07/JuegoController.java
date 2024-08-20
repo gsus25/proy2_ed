@@ -64,7 +64,7 @@ public class JuegoController {
         // Configurar el Label para que se ajuste automáticamente al contenido
         preguntaLabel.setWrapText(true);  // Si quieres que el texto se ajuste en múltiples líneas
         preguntaLabel.setMaxWidth(Double.MAX_VALUE);  // Para que ocupe el máximo ancho posible
-        preguntaLabel.setText(preguntas.get(0));
+        preguntaLabel.setText(numPreguntas+". "+preguntas.get(0));
         preguntaLabel.setAlignment(Pos.CENTER);
     }
     
@@ -200,10 +200,10 @@ public class JuegoController {
                 nodoActual = nodoActual.getDer();
 
             if(numPreguntas!=maxPreguntas && nodoActual!=null){ 
-                preguntaLabel.setText(nodoActual.getContenido());
+                preguntaLabel.setText(numPreguntas+1+". "+nodoActual.getContenido());
                 cambiarImagen();
             }
-            if(numPreguntas==maxPreguntas) resultado(e);
+            if(numPreguntas==maxPreguntas || nodoActual==null) resultado(e);
             
             numPreguntas++;
             System.out.println(contesta);
