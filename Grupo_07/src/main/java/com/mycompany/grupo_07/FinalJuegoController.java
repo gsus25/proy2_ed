@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -30,6 +32,13 @@ public class FinalJuegoController {
     
     @FXML
     private VBox vboxAnimales;
+    @FXML
+    private VBox rootVBox;
+    @FXML
+    private ScrollPane scrollPane;
+    @FXML
+    private Label respuestaLabel;
+    
     @FXML
     private void switchToMenu(ActionEvent e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -107,6 +116,15 @@ public class FinalJuegoController {
     }
     
     public void llenarAnimales(ArrayList<String> animales){
+        
+        if(animales.isEmpty()){
+            respuestaLabel.setText("No tengo suficiente información para adivinar tu animal");
+            respuestaLabel.setWrapText(true);  // Si quieres que el texto se ajuste en múltiples líneas
+            respuestaLabel.setMaxWidth(Double.MAX_VALUE);
+            respuestaLabel.setAlignment(Pos.CENTER);
+            return;
+        }
+        
         for (String animal : animales) {
             Label label = new Label(animal);  // Crear un Label con el texto del elemento
             vboxAnimales.getChildren().add(label);  // Agregar el Label al VBox

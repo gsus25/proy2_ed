@@ -7,14 +7,10 @@ package com.mycompany.grupo_07;
 import static com.mycompany.grupo_07.Aquinator.cargarPreguntas;
 import static com.mycompany.grupo_07.Aquinator.cargarRespuestas;
 import static com.mycompany.grupo_07.Aquinator.construirArbol;
-import static com.mycompany.grupo_07.Readable.escribirAnimal;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Map;
 import java.util.Random;
-import java.util.Scanner;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +42,8 @@ public class JuegoController {
     private ArrayList<String> animales;
     private ArbolBinario<String> nodoActual;
     private ArrayList<String> contesta;
-    
+    private ArrayList<String> opciones;
+    private int contadorNose;
     
     @FXML
     private Button botonSi;
@@ -56,6 +53,8 @@ public class JuegoController {
     private Label preguntaLabel;
     @FXML
     private ImageView imgView;
+    @FXML
+    private Button botonNoSe;
     
     public void setPreguntas(int n){
         this.maxPreguntas = n;
@@ -123,7 +122,11 @@ public class JuegoController {
         imagePaths.add("/images/Pfeliz.png");
         imagePaths.add("/images/Pmuyfeliz.png");
         imagePaths.add("/images/Ptriste.png");
-
+        
+        opciones=new ArrayList<>();
+        opciones.add("Sí");
+        opciones.add("No");  
+        
         random = new Random();
         
         // Cargar las preguntas y respuestas
@@ -135,6 +138,7 @@ public class JuegoController {
         animales= arbol.obtenerHojas();
         
         nodoActual = arbol;
+        contadorNose=0;
         numPreguntas = 1;
         contesta=new ArrayList<>();
     }
@@ -147,18 +151,27 @@ public class JuegoController {
         imgView.setImage(image);
     }
     
+    private void aprender(ActionEvent e) throws IOException{
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Animal no encontrado");
+        alert.setHeaderText("No es posible encontrar un animal con estas características");
+        alert.setContentText("¿Quieres añadir tu animal al juego?");
+        if (alert.showAndWait().get()==ButtonType.OK) {
+            cambiarPantallaAprender(e);
+        }
+        else cambiarPantallaMenu(e);
+        return;
+    }
+    
     @FXML
     private void switchPregunta(ActionEvent e) throws IOException {
         
-        if (nodoActual == null || nodoActual.raiz == null) {           
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Animal no encontrado");
-            alert.setHeaderText("No es posible encontrar un animal con estas características");
-            alert.setContentText("¿Quieres añadir tu animal al juego?");
-            if (alert.showAndWait().get()==ButtonType.OK) {
-                cambiarPantallaAprender(e);
+        if (nodoActual == null || nodoActual.raiz == null) {
+            if(contesta.size()==contadorNose){
+                resultado(e);
+                return;
             }
-            else cambiarPantallaMenu(e);
+            aprender(e);
             return;
         }
 
@@ -167,10 +180,16 @@ public class JuegoController {
             System.out.println(nodoActual.getContenido());
             String respuesta = ((Button) e.getSource()).getText();
             System.out.println(respuesta);
-            contesta.add(respuesta);
+            
+            if(respuesta.equals("No lo sé")){
+                respuesta=opciones.get(random.nextInt(opciones.size()));
+                contadorNose++;
+            }
+            
+            contesta.add(respuesta.toLowerCase());
             if (respuesta.equals("Sí"))
                 nodoActual = nodoActual.getIzq();
-            else
+            else if(respuesta.equals("No"))
                 nodoActual = nodoActual.getDer();
 
             if(numPreguntas!=maxPreguntas && nodoActual!=null){ 
@@ -182,6 +201,15 @@ public class JuegoController {
             numPreguntas++;
             System.out.println(contesta);
  
+            if (nodoActual == null || nodoActual.raiz == null) {
+                if(contesta.size()==contadorNose){
+                    resultado(e);
+                    return;
+                }
+                aprender(e);
+                return;
+            }
+            
         }
         else{
             resultado(e);
@@ -191,10 +219,20 @@ public class JuegoController {
         
     private void resultado(ActionEvent e) throws IOException{
         ArrayList<String> animalesPosibles=new ArrayList<>();
-        if (nodoActual != null && nodoActual.esHoja()) {
-            animalesPosibles.add(nodoActual.getContenido());
-        } else {
-            animalesPosibles.addAll(nodoActual.obtenerHojas());
+        
+        if(contesta.size()!=contadorNose){
+            if (nodoActual != null && nodoActual.esHoja()) {
+                animalesPosibles.add(nodoActual.getContenido());
+            } else if(nodoActual!=null){
+                animalesPosibles.addAll(nodoActual.obtenerHojas());
+            }else{
+                if(contesta.size()==contadorNose){
+                    resultado(e);
+                    return;
+                }
+                aprender(e);
+                return;
+            }
         }
         cambiarPantallaFinal(e,animalesPosibles);
     }

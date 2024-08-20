@@ -80,21 +80,23 @@ public class AprenderController {
     private void switchPregunta(ActionEvent e) throws IOException {
         
         if (respuestas.size()==20){
-            respuestas.replaceAll(s -> "Sí".equals(s) ? "sí" : s);
             agregarAnimal(e);
         }
                 
         if(numRespuestas<=maxRespuestas){
             String respuesta = ((Button) e.getSource()).getText();
             System.out.println(respuesta);
-            respuestas.add(respuesta);
+            respuestas.add(respuesta.toLowerCase());
 
-            if(numRespuestas!=maxRespuestas){ 
-                preguntaLabel.setText(preguntas.get(numRespuestas));
+            if(numRespuestas!=maxRespuestas && numRespuestas+1!=preguntas.size()){ 
+                preguntaLabel.setText(preguntas.get(++numRespuestas));
             }
-
-            numRespuestas++;
+            
             System.out.println(respuestas);
+            
+            if (respuestas.size()==20){
+                agregarAnimal(e);
+            }
         }
     }
     

@@ -25,7 +25,7 @@
       </Button>
    </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="396.0" prefWidth="238.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="396.0" prefWidth="238.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="preguntaLabel" alignment="CENTER" prefHeight="94.0" prefWidth="195.0" text="¿Pregunta?">
                <VBox.margin>
@@ -47,6 +47,11 @@
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
+               <padding>
+                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+               </padding>
+            </Button>
+            <Button fx:id="botonNoSe" layoutX="93.0" layoutY="248.0" mnemonicParsing="false" onAction="#switchPregunta" style="-fx-background-color: orange;" text="No lo sé">
                <padding>
                   <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                </padding>
